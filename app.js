@@ -10,6 +10,7 @@ let userroutes =require("./api/routes/user")
 let router = express.Router();
 
 let app = express();
+let Promise= require('bluebird')
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded(
