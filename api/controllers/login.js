@@ -9,7 +9,7 @@ let sigincontroller={
     user_login:(req,res)=>{
       Promise.coroutine( function*() {
         let user = yield User.findOne({UserName: req.body.UserName});
-        console.log(user);
+       
         if(user) {
           if(bcrypt.compareSync(req.body.password, user.password)) {
             const token = jwt.sign({

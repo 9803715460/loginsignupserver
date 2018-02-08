@@ -1,5 +1,6 @@
 let express = require("express");
 let router = express.Router();
+
 let bcrypt = require("bcrypt")
 
 const UserController = require('../controllers/user');
@@ -9,6 +10,8 @@ const checkAuth = require('../middleware/check-auth');
 
 router.post("/signup", UserController.user_signup);
 router.post("/login", sigincontroller.user_login);
-router.get("/showusers",checkAuth,showuserController.showusers);
+router.get("/showusers",showuserController.showusers);
+router.post("/edituser",checkAuth, UserController.edit);
+
 
 module.exports = router;

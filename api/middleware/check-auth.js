@@ -1,14 +1,10 @@
-const jwt = require('jsonwebtoken');
 
-module.exports = (req, res, next) => {
-    try {
-        const token = req.headers.authorization.split(" ")[1];
-        const decoded = jwt.verify(token, process.env.JWT_KEY);
-        req.userData = decoded;
-        next();
-    } catch (error) {
-        return res.status(401).json({
-            message: 'Authe failed'
-        });
-    }
+
+'use strict';
+const JWT = require('./jwt');
+const IsAuthenticated = (req, res, next) => {
+    let verified = JWT.verifyToken(req.headers.authorization);
+    req.userData = verified;
+    next();
 };
+module.exports = IsAuthenticated;
